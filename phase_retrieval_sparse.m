@@ -1,13 +1,12 @@
-%%updated 5/31/2017
 %% phase retrieval for sparse signals 
-
-addpath('utils','measurement_model','ThWF','SPARTA','plot_tools','results','signal_model')
+%stores signal models (.mat) and results (.mat/fig/jpg). not committed to git repo.
 if ~exist('results','dir')
     mkdir('results')
 end
 if ~exist('signal_model','dir')
     mkdir('signal_model')
 end
+addpath('utils','measurement_model','ThWF','SPARTA','plot_tools','results','signal_model')
 close all;
 clc;
 clear all;
@@ -16,14 +15,14 @@ clear all;
 n = 1000; %signal length
 kspan = 3:3:30; %sparsity vector
 kl = length(kspan);
-b = 1; %block length (non-essential for evaluating standard sparse models; trivially J=1)
+b = 1; %block length (non-essential for evaluating standard sparse models; trivially b=1)
 
 %% measurement params
 mspan = 100:100:1000; %no. of measurements
 ml = length(mspan);
 
 %% recovery validity
-trials_M = 1;
+trials_M = 1; %set to 50 or 100
 err_sig = zeros(kl,ml,trials_M,4);
 ttimer = zeros(kl,ml,trials_M,4);
 
@@ -117,4 +116,4 @@ cd('..')
 phase_trans(strr)
 
 %% plot running time statistics 
-%plot_runtime(strr)
+% plot_runtime(strr)

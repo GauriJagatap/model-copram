@@ -1,5 +1,13 @@
 %% CoPRAM
+%"Fast, sample-efficient algorithms for structured phase retrieval"
+% Gauri Jagatap and Chinmay Hegde, Iowa State University
+% email: gauri@iastate.edu
 
+% recover x given y_abs, A.
+% y_abs = |Ax|.
+% A is sensing matrix (m x n); Normal(0,1) distributed; typically m < n.
+% x is s-sparse (n x 1).
+% y_abs are magnitude only measurements (m x 1).
 function [x,err_hist,p,x_init] =  CoPRAM(y_abs,A,s,max_iter,tol1,tol2,z)
 %%updated 5/31/2017
 
@@ -56,7 +64,7 @@ for i = 1:card_Marg
 end
 
 svd_opt = 'svd'; %more accurate, but slower for larger dimensions
-svd_opt = 'power'; %approximate, faster
+svd_opt = 'power'; %approximate, faster for larger dimensions
 
 switch svd_opt
     case 'svd'

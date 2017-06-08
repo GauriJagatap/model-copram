@@ -8,10 +8,10 @@ function [] = phase_trans_block(string)
     cd('..')
     err_thres = 0.05;
     
-    kj = size(K_J,2);
-    prob_err = zeros(kj,length(mspan),2);
+    kb = size(K_b,2);
+    prob_err = zeros(kb,length(mspan),2);
     
-    for k=1:kj    
+    for k=1:kb    
         err_block = err_sig(k,:,:,1);
         prob_err(k,:,1) = sum(err_block>err_thres,3)/trials_M;
         err_copram = err_sig(k,:,:,2);
@@ -21,7 +21,7 @@ function [] = phase_trans_block(string)
         hold on;
         plot(mspan,1-prob_err(k,:,1),'o-b');
         plot(mspan,1-prob_err(k,:,2),'x-m');
-        t = ['phase transition: K = ',num2str(K_J(1,k)),', J = ',num2str(K_J(2,k)),', N = ',num2str(n)];
+        t = ['phase transition: K = ',num2str(K_b(1,k)),', J = ',num2str(K_b(2,k)),', N = ',num2str(n)];
         xlab='no. of measurements (m)';
         ylab='probability of success in recovery';
         axisfortex(t,xlab,ylab)
@@ -30,10 +30,10 @@ function [] = phase_trans_block(string)
         box on  
     end
     
-    kspan = K_J(1,:).*K_J(2,:);
-    b = mean(K_J(2,:));
-    if prod((K_J(2,:)-b)==0)==1
-        %phase transition diagram for variable 's' and 'm'
+    kspan = K_b(1,:).*K_b(2,:);
+    b = mean(K_b(2,:));
+    if prod((K_b(2,:)-b)==0)==1
+        %phase transition diagram for variable 's' and 'm'; if block length is constant
         cd('plot_tools')
         prob_suc = 1-prob_err;
         t = [ 'Block CoPRAM : n = ',num2str(n),', b = ',num2str(b)];
