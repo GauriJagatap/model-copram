@@ -8,8 +8,11 @@ phase_retrieval_sparse.m
 Runs and analyzes performances of the following sparse phase retrieval algorithms:
 1. CoPRAM
 2. AltMinSparse 
+(implemented based on the paper https://arxiv.org/abs/1306.0160)
 3. Thresholded Wirtinger Flow for sparse phase retrieval (ThWF)
+(implemented based on the paper https://arxiv.org/abs/1506.03382)
 4. Sparse Phase Retrieval using Truncated Amplitude Flow (SparTA)
+(implemented based on the paper https://arxiv.org/abs/1611.07641)
 
 phase_retrieval_block.m
 
