@@ -1,5 +1,9 @@
 # model-copram
-Code for phase retrieval of signals with underlying structured sparsity level s (Compressive Phase Retrieval with Alternating Minimization, i.e. CoPRAM). Refer the paper for further details on implementation: https://arxiv.org/abs/1705.06412
+Code for phase retrieval of signals with underlying structured sparsity level s (Compressive Phase Retrieval with Alternating Minimization, i.e. CoPRAM). Refer the paper:
+
+"Phase Retrieval Using Structured Sparsity: A Sample Efficient Algorithmic Framework", by Gauri Jagatap and Chinmay Hegde,
+
+for further details on implementation: https://arxiv.org/abs/1705.06412
 
 phase_retrieval_sparse.m 
 
