@@ -17,7 +17,7 @@ Runs and analyzes performances of the following sparse phase retrieval algorithm
 4. Sparse Phase Retrieval using Truncated Amplitude Flow (SparTA)
 (implemented based on the paper https://arxiv.org/abs/1611.07641)
 
-# model-copram
+# block-copram
 
 Phase retrieval of block-sparse signals of uniform block length b and overall sparsity s (Block Compressive Phase Retrieval with Alternating Minimization, i.e. Block CoPRAM). Refer the paper:
 
