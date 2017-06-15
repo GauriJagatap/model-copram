@@ -1,4 +1,5 @@
-# model-copram
+#copram
+
 Code for phase retrieval of signals with underlying structured sparsity level s (Compressive Phase Retrieval with Alternating Minimization, i.e. CoPRAM). Refer the paper:
 
 "Phase Retrieval Using Structured Sparsity: A Sample Efficient Algorithmic Framework", by Gauri Jagatap and Chinmay Hegde,
@@ -16,8 +17,13 @@ Runs and analyzes performances of the following sparse phase retrieval algorithm
 4. Sparse Phase Retrieval using Truncated Amplitude Flow (SparTA)
 (implemented based on the paper https://arxiv.org/abs/1611.07641)
 
+# model-copram
 
-Phase retrieval of block-sparse signals of uniform block length b and overall sparsity s (Block Compressive Phase Retrieval with Alternating Minimization, i.e. Block CoPRAM). Refer the paper for further details on implementation: https://arxiv.org/abs/1705.06412
+Phase retrieval of block-sparse signals of uniform block length b and overall sparsity s (Block Compressive Phase Retrieval with Alternating Minimization, i.e. Block CoPRAM). Refer the paper:
+
+"Phase Retrieval Using Structured Sparsity: A Sample Efficient Algorithmic Framework", by Gauri Jagatap and Chinmay Hegde,
+
+for further details on implementation: https://arxiv.org/abs/1705.06412
 
 phase_retrieval_block.m
 
