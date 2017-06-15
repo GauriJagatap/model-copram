@@ -1,4 +1,4 @@
-#copram
+# copram
 
 Code for phase retrieval of signals with underlying structured sparsity level s (Compressive Phase Retrieval with Alternating Minimization, i.e. CoPRAM). Refer the paper:
 
