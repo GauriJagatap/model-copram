@@ -1,3 +1,9 @@
+% code by Gauri Jagatap (gauri@iastate.edu)
+% based on algorithm described in
+% Cai, T. Tony, Xiaodong Li, and Zongming Ma. 
+% "Optimal rates of convergence for noisy sparse phase retrieval 
+% via thresholded Wirtinger flow." 
+% The Annals of Statistics 44.5 (2016): 2221-2251.
 function [x,err_hist,p,x_init] = Thresholded_WF(y_twf,A,K,max_iter,tol1,tol2,z)
 %updated 5/31/2017
 

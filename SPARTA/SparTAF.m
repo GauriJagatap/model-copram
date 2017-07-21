@@ -1,3 +1,8 @@
+% code by Gauri Jagatap (gauri@iastate.edu)
+% based on algorithm described in 
+% G. Wang, G. B. Giannakis, J. Chen and M. Akçakaya,
+% "SPARTA: Sparse phase retrieval via Truncated Amplitude flow", 
+% ICASSP 2017.
 function [x,err_hist,p,x_init] = SparTAF(y_abs,A,s,max_iter,tol1,tol2,z)
 %updated 5/31/2017
 
