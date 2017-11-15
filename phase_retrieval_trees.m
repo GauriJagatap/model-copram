@@ -7,6 +7,7 @@ path(path,'measurement_model');
 path(path,'plot_tools');
 path(path,'test_images');
 path(path,'treeapprox');
+path(path,'results');
 
 close all;
 clc;
@@ -14,15 +15,18 @@ clear all;
 
 %% signal model
 N = 512^2; %signal length
-scal = 1/8;
+scal = 1/16;
 n = N*(scal^2);
 
 %load image
 image = 'lovett';
 if strcmp(image, 'lovett')
     im = imread('test_images/Lovett_Hall.jpg');
+% im = imread('test_images/Catt_Hall3.jpg');
+%     im = imresize(im,[512 512]);
     im = im2double(im);
     im = im(:,(400-250):(400+250),:);
+    %im = im(:,(500-250):(500+250),:);
     nn = 512;
     im_sq = imresize(im,[nn nn],'bicubic');
     imgray = rgb2gray(im_sq);
@@ -42,20 +46,21 @@ lev = floor(log(nn)/log(2));
 
 %important: 'per' ensures you get a non-redundant transform.
 wavmode = 'per';
+wavname = 'haar';
 dwtmode(wavmode,'nodisp')
-[c,c_ind] = wavedec2(imgray,lev,'db8');
+[c,c_ind] = wavedec2(imgray,lev,wavname);
 c_rearranged = rearrange_wavedec2(c, 'forward');
 
 %% sparsity
-fspan = 0.01:0.01:0.1;
+fspan = 4*(0.01:0.01:0.1);
 fl = length(fspan);
 
 %% measurement params
-mspan = ceil((0.05:0.05:0.5)*n/4); %no. of measurements
+mspan = ceil(4*(0.05:0.05:0.5)*n/4); %no. of measurements
 ml = length(mspan);
 
 %% recovery validity
-trials_M = 1;
+trials_M = 50;
 err_sig = zeros(fl,ml,trials_M,2);
 ttimer = zeros(fl,ml,trials_M,2);
 
@@ -73,7 +78,7 @@ for tr = 1:trials_M
         fprintf('Computing thresholded version of the image ...');
         supp = treeexact_smalltable_wvtree(c_rearranged.^2,order,s);
         chat = c_rearranged .* supp;
-        imhat = waverec2(rearrange_wavedec2(chat, 'backward'),c_ind,'db8');
+        imhat = waverec2(rearrange_wavedec2(chat, 'backward'),c_ind,wavname);
 %         figure, imshow([imgray imhat]), axis image;
 %         title('Actual v/s Thresholded');
         z = chat;
@@ -83,7 +88,7 @@ for tr = 1:trials_M
         [y_abs,y_ph,A] = measure_signal(m,z);
 
         %% initialize paramters of Tree CoPRAM and CoPRAM
-        iter = 35; %maximum iterations for AltMin based algorithms
+        iter = 10; %maximum iterations for AltMin based algorithms
         tol1 = 1e-3; %error tolerance for measurements
         tol2 = 1e-5; %relative error tolerance between subsequent iterations
 
@@ -97,7 +102,7 @@ for tr = 1:trials_M
         tic;
         [x2,err_hist2,C2,x2_init] = CoPRAM(y_abs,A,s,iter,tol1,tol2,z);   
         ttimer(m_iter,tr,2) = toc;            
-
+        
         [err_sig(f_iter,m_iter,tr,1) err_ind1] = approx_err(x1,z);
         [err_sig(f_iter,m_iter,tr,2) err_ind2] = approx_err(x2,z);
 
@@ -111,8 +116,8 @@ for tr = 1:trials_M
 
         %plot if algorithm is run for few instances of K and M
         if (trials_M*ml*fl) == 1
-            im_tree_exact = waverec2(rearrange_wavedec2(x1, 'backward'),c_ind,'db8');
-            im_approx = waverec2(rearrange_wavedec2(x2, 'backward'),c_ind,'db8');
+            im_tree_exact = waverec2(rearrange_wavedec2(x1, 'backward'),c_ind,wavname);
+            im_approx = waverec2(rearrange_wavedec2(x2, 'backward'),c_ind,wavname);
             figure, clf
             imshow([im_tree_exact im_approx]);
             title('BlockCoPRAM v/s CoPRAM');
@@ -123,10 +128,10 @@ for tr = 1:trials_M
 end
 
 %% save results
-cd('../results')
+cd('results')
     strr = ['TreeSparsePR_errors_','n',num2str(n),'_s',num2str(s),'_trials',num2str(trials_M),'.mat'];
     save(strr,'err_sig','n','fspan','mspan','trials_M','ttimer');
-cd('../phase-retrieval')
+cd('..')
 
 %% display results - mean error in recovery
 %plot_error_trees(strr);

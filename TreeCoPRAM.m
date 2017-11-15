@@ -61,7 +61,7 @@ for i = 1:card_Marg
 end
 
 svd_opt = 'svd'; %more accurate, but slower for larger dimensions
-% svd_opt = 'power'; %approximate, faster
+svd_opt = 'power'; %approximate, faster
 
 switch svd_opt
     case 'svd'

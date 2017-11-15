@@ -4,7 +4,7 @@ function [] = phase_trans_diagram(string)
 
 %%updated 5/30/2017
 
-    cd('../results')
+    cd('results')
     load(string)
     err_thres = 0.05;    
     prob_err = zeros(length(fspan),length(mspan),2);
@@ -23,7 +23,7 @@ function [] = phase_trans_diagram(string)
    
     figure; 
     sspan = round(fspan*n);
-    mm = (0.05:0.05:0.5)/4;
+    mm = (0.05:0.05:0.5);%(floor(100*mspan/n)/100)/4;
     imagesc(mm,fspan/4,prob_suc_treecopram); 
     colormap(gray); 
     set(gca,'YDir','normal'); 
@@ -48,6 +48,6 @@ function [] = phase_trans_diagram(string)
     xlabel('No. of samples/n = m/n')
     ylabel('Sparsity/n =  s/n')
     title('CoPRAM')
-    cd('../phase-retrieval')
+    cd('..')
     
 end
