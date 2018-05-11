@@ -33,7 +33,8 @@ Runs and analyzes performance of Block CoPRAM algorithm w.r.t CoPRAM for block s
 
 Phase retrieval of tree-sparse signals of sparsity s (Tree Compressive Phase Retrieval with Alternating Minimization, i.e. Tree CoPRAM). Please cite the following paper:
 
-G. Jagatap, C. Hegde, “Towards Sample-Optimal Methods for Solving Random Quadratic Equations with Structure”, IEEE International Symposium on Information Theory (ISIT), 2018
+G. Jagatap, C. Hegde, “Towards Sample-Optimal Methods for Solving Random Quadratic Equations with Structure”, IEEE International Symposium on Information Theory (ISIT), 2018.
+
 Full paper at: https://gaurijagatap.github.io/assets/ISIT18.pdf
 
 Main code:
